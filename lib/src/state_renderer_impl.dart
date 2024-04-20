@@ -32,7 +32,11 @@ class LoadingState extends FlowState<LoadingRendererType> {
   final LoadingRendererType type;
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        type,
+        super.title,
+        super.message,
+      ];
 }
 
 class ErrorState extends FlowState<ErrorRendererType> {
@@ -327,19 +331,12 @@ extension FlowStateExtension on FlowState {
             // show popup error
             showPopup(context, content);
           } else if (type == ErrorRendererType.toast) {
-            if (RequestBuilderInitializer.instance.onErrorToast != null) {
-              RequestBuilderInitializer.instance.onErrorToast!(
-                title: errorTitle0,
-                message: message ?? errorMessage0 ?? "",
-              );
-            } else {
-              FToast.showCustomToast(
-                context: context,
-                title: errorTitle0,
-                message: message ?? errorMessage0 ?? "",
-                color: instance.errorColor,
-              );
-            }
+            FToast.showCustomToast(
+              context: context,
+              title: errorTitle0,
+              message: message ?? errorMessage0 ?? "",
+              color: instance.errorColor,
+            );
           }
         }
         break;
@@ -368,19 +365,12 @@ extension FlowStateExtension on FlowState {
             // show popup error
             showPopup(context, content);
           } else if (type == SuccessRendererType.toast) {
-            if (RequestBuilderInitializer.instance.onSuccessToast != null) {
-              RequestBuilderInitializer.instance.onSuccessToast!(
-                title: successTitle0,
-                message: message ?? successMessage0 ?? "",
-              );
-            } else {
-              FToast.showCustomToast(
-                context: context,
-                title: successTitle0,
-                message: message ?? successMessage0 ?? "",
-                color: instance.mainColor,
-              );
-            }
+            FToast.showCustomToast(
+              context: context,
+              title: successTitle0,
+              message: message ?? successMessage0 ?? "",
+              color: instance.mainColor,
+            );
           }
         }
         break;
@@ -402,20 +392,18 @@ extension FlowStateExtension on FlowState {
     Widget widget, {
     bool dismiss = true,
   }) async {
-    final color = RequestBuilderInitializer.instance.popUpBackground;
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       _isCurrentDialogShowing = true;
       await showDialog(
-        barrierColor: color ?? Colors.black.withOpacity(0.5),
+        barrierColor: Colors.black.withOpacity(0.5),
         barrierDismissible: dismiss,
         context: context,
         builder: (BuildContext context) => BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
           child: Dialog(
-            insetPadding: EdgeInsets.zero,
             backgroundColor: Colors.transparent,
-            elevation: 0.0,
             child: widget,
+            elevation: 0,
           ),
         ),
       );
