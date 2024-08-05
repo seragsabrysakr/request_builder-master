@@ -315,7 +315,7 @@ extension FlowStateExtension on FlowState {
           String? errorTitle0 = errorTitle ?? instance.errorTitle;
           StatePosition? statePosition0 =
               statePosition ?? instance.statePosition;
-
+          double? bottom0 = bottom ?? instance.bottom;
           final errorImage0 = errorImage ?? instance.errorImage;
           final errorMessage0 = errorMessage ?? instance.errorMessage;
           errorTitle0 ??= context.lng.error;
@@ -346,7 +346,7 @@ extension FlowStateExtension on FlowState {
             );
           } else if (type == ErrorRendererType.snackBar) {
             AppDialogs.showSnackBar(
-                bottom: instance.bottom ?? 20.0,
+                bottom: bottom0 ?? 20.0,
                 context: context,
                 message: message ?? errorMessage0 ?? "",
                 error: true);
@@ -361,6 +361,7 @@ extension FlowStateExtension on FlowState {
           final successImage0 = successImage ?? instance.successImage;
           final successMessage0 = successMessage ?? instance.successMessage;
           successTitle0 ??= context.lng.success;
+          double? bottom0 = bottom ?? instance.bottom;
 
           // i should check if we are showing loading popup to remove it before showing success popup
           if (type == SuccessRendererType.popup) {
@@ -389,7 +390,7 @@ extension FlowStateExtension on FlowState {
             );
           } else if (type == SuccessRendererType.snackBar) {
             AppDialogs.showSnackBar(
-                bottom: instance.bottom ?? 20.0,
+                bottom: bottom0 ?? 20.0,
                 context: context,
                 message: message ?? successMessage0 ?? "");
           }
