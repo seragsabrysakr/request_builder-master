@@ -6,13 +6,15 @@ import 'package:request_builder/src/extensions.dart';
 
 enum NormalRendererType { content }
 
+enum StatePosition { up, down }
+
 enum LoadingRendererType { popup, content }
 
-enum ErrorRendererType { popup, toast, content }
+enum ErrorRendererType { popup, toast, snackBar, content }
 
 enum EmptyRendererType { content }
 
-enum SuccessRendererType { popup, toast, content, none }
+enum SuccessRendererType { popup, toast, content, snackBar, none }
 
 class RenderViewParameters {
   final String message;

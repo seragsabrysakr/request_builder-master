@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flash/flash.dart';
-import 'package:request_builder/src/extensions.dart';
+import 'package:flutter/material.dart';
 import 'package:request_builder/request_builder.dart';
+import 'package:request_builder/src/extensions.dart';
 
 class FToast {
   static Future<Object?> showCustomToast({
@@ -9,6 +9,7 @@ class FToast {
     required String title,
     required String message,
     required Color color,
+    required StatePosition statePosition,
   }) {
     return showFlash(
       barrierDismissible: true,
@@ -18,7 +19,9 @@ class FToast {
       duration: const Duration(seconds: 4),
       builder: (context, controller) {
         return Flash(
-          position: FlashPosition.bottom,
+          position: statePosition == StatePosition.up
+              ? FlashPosition.top
+              : FlashPosition.bottom,
           dismissDirections: const [FlashDismissDirection.vertical],
           controller: controller,
           child: Padding(

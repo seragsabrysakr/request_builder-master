@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:request_builder/src/assets.dart';
+import 'package:request_builder/src/state_renderer.dart';
 
 import 'state_renderer_impl.dart';
 
@@ -18,6 +19,7 @@ class RequestBuilderInitializer {
   Widget? popUpSuccessView;
   TextStyle? titleTextStyle;
   TextStyle? messageTextStyle;
+  StatePosition? statePosition;
   final Function? successAction;
   String? errorImage, successImage, loadingImage, emptyImage;
   String? errorTitle,
@@ -52,6 +54,7 @@ class RequestBuilderInitializer {
     this.messageTextStyle,
     this.successActionTitle,
     this.successAction,
+    this.statePosition,
     required this.mainColor,
     required this.errorColor,
   });
@@ -72,6 +75,7 @@ class RequestBuilderInitializer {
     String? loadingImage,
     String? emptyImage,
     String? successActionTitle,
+    StatePosition? statePosition,
     Function? successAction,
     Color mainColor = AppColors.mainColor,
     Color errorColor = AppColors.errorColor,
@@ -89,6 +93,7 @@ class RequestBuilderInitializer {
       messageTextStyle: messageTextStyle,
       mainColor: mainColor,
       errorColor: errorColor,
+      statePosition: statePosition,
       emptyImage: emptyImage,
       errorImage: errorImage,
       loadingImage: loadingImage,

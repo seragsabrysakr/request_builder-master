@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:request_builder/request_builder.dart';
 import 'package:request_builder/src/extensions.dart';
-import 'package:request_builder/src/flash_toast_helper.dart';
+// import 'package:request_builder/src/flash_toast_helper.dart';
 
 abstract class FlowState<T> extends Equatable {
   final String? message;
@@ -125,6 +125,7 @@ extension FlowStateExtension on FlowState {
     String? loadingMessage,
     String? emptyMessage,
     String? successActionTitle,
+    StatePosition? statePosition,
     bool? isSliver = false,
     bool? withScaffold = false,
     Function? successAction,
@@ -273,6 +274,7 @@ extension FlowStateExtension on FlowState {
     String? errorTitle,
     String? successTitle,
     String? loadingTitle,
+    StatePosition? statePosition,
     String? emptyTitle,
     String? errorMessage,
     String? successMessage,
@@ -310,6 +312,9 @@ extension FlowStateExtension on FlowState {
       case ErrorState:
         {
           String? errorTitle0 = errorTitle ?? instance.errorTitle;
+          StatePosition? statePosition0 =
+              statePosition ?? instance.statePosition;
+
           final errorImage0 = errorImage ?? instance.errorImage;
           final errorMessage0 = errorMessage ?? instance.errorMessage;
           errorTitle0 ??= context.lng.error;
@@ -332,16 +337,24 @@ extension FlowStateExtension on FlowState {
             showPopup(context, content);
           } else if (type == ErrorRendererType.toast) {
             FToast.showCustomToast(
+              statePosition: statePosition0 ?? StatePosition.down,
               context: context,
               title: errorTitle0,
               message: message ?? errorMessage0 ?? "",
               color: instance.errorColor,
             );
+          } else if (type == ErrorRendererType.snackBar) {
+            AppDialogs.showSnackBar(
+                context: context,
+                message: message ?? errorMessage0 ?? "",
+                error: true);
           }
         }
         break;
       case SuccessState:
         {
+          StatePosition? statePosition0 =
+              statePosition ?? instance.statePosition;
           String? successTitle0 = successTitle ?? instance.successTitle;
           final successImage0 = successImage ?? instance.successImage;
           final successMessage0 = successMessage ?? instance.successMessage;
@@ -366,11 +379,15 @@ extension FlowStateExtension on FlowState {
             showPopup(context, content);
           } else if (type == SuccessRendererType.toast) {
             FToast.showCustomToast(
+              statePosition: statePosition0 ?? StatePosition.down,
               context: context,
               title: successTitle0,
               message: message ?? successMessage0 ?? "",
               color: instance.mainColor,
             );
+          } else if (type == SuccessRendererType.snackBar) {
+            AppDialogs.showSnackBar(
+                context: context, message: message ?? successMessage0 ?? "");
           }
         }
         break;
