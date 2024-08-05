@@ -7,6 +7,7 @@ class AppDialogs {
   static showSnackBar({
     required BuildContext context,
     required String message,
+    required StatePosition statePosition,
     bool error = false,
     double bottom = 20.0,
    }) {
@@ -19,7 +20,7 @@ class AppDialogs {
         closeIconColor: Colors.white,
         shape: const StadiumBorder(),
         margin: EdgeInsets.only(
-            bottom:bottom ,
+            bottom: statePosition == StatePosition.up ? bottom.h : 10.h,
             left: 5.w,
             right: 5.w),
         content: Text(message),

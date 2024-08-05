@@ -126,7 +126,7 @@ extension FlowStateExtension on FlowState {
     String? emptyMessage,
     String? successActionTitle,
     StatePosition? statePosition,
-        double? bottom,
+    double? bottom,
     bool? isSliver = false,
     bool? withScaffold = false,
     Function? successAction,
@@ -347,6 +347,7 @@ extension FlowStateExtension on FlowState {
             );
           } else if (type == ErrorRendererType.snackBar) {
             AppDialogs.showSnackBar(
+                statePosition: statePosition0 ?? StatePosition.down,
                 bottom: bottom0 ?? 20.0,
                 context: context,
                 message: message ?? errorMessage0 ?? "",
@@ -391,6 +392,7 @@ extension FlowStateExtension on FlowState {
             );
           } else if (type == SuccessRendererType.snackBar) {
             AppDialogs.showSnackBar(
+                statePosition: statePosition0 ?? StatePosition.down,
                 bottom: bottom0 ?? 20.0,
                 context: context,
                 message: message ?? successMessage0 ?? "");
