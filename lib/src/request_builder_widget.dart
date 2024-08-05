@@ -21,6 +21,7 @@ class RequestBuilderInitializer {
   TextStyle? messageTextStyle;
   StatePosition? statePosition;
   final Function? successAction;
+  double? bottom;
   String? errorImage, successImage, loadingImage, emptyImage;
   String? errorTitle,
       successTitle,
@@ -50,6 +51,7 @@ class RequestBuilderInitializer {
     this.loadingImage,
     this.emptyImage,
     this.errorImage,
+    this.bottom,
     this.successImage,
     this.messageTextStyle,
     this.successActionTitle,
@@ -71,6 +73,8 @@ class RequestBuilderInitializer {
     TextStyle? titleTextStyle,
     TextStyle? messageTextStyle,
     String? errorImage,
+    double? bottom,
+
     String? successImage,
     String? loadingImage,
     String? emptyImage,
@@ -86,6 +90,7 @@ class RequestBuilderInitializer {
       errorView: errorView,
       emptyView: emptyView,
       successView: successView,
+      bottom: bottom,
       popUpLoadingView: popUpLoadingView,
       popUpErrorView: popUpErrorView,
       popUpSuccessView: popUpSuccessView,

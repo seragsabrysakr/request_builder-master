@@ -8,8 +8,8 @@ class AppDialogs {
     required BuildContext context,
     required String message,
     bool error = false,
-    StatePosition statePosition = StatePosition.up,
-  }) {
+    double bottom = 20.0,
+   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
@@ -19,7 +19,7 @@ class AppDialogs {
         closeIconColor: Colors.white,
         shape: const StadiumBorder(),
         margin: EdgeInsets.only(
-            bottom: statePosition == StatePosition.up ? 85.h : 10.h,
+            bottom:bottom ,
             left: 5.w,
             right: 5.w),
         content: Text(message),

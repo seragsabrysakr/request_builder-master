@@ -275,6 +275,7 @@ extension FlowStateExtension on FlowState {
     String? successTitle,
     String? loadingTitle,
     StatePosition? statePosition,
+    double? bottom,
     String? emptyTitle,
     String? errorMessage,
     String? successMessage,
@@ -345,6 +346,7 @@ extension FlowStateExtension on FlowState {
             );
           } else if (type == ErrorRendererType.snackBar) {
             AppDialogs.showSnackBar(
+                bottom: instance.bottom ?? 20.0,
                 context: context,
                 message: message ?? errorMessage0 ?? "",
                 error: true);
@@ -387,7 +389,9 @@ extension FlowStateExtension on FlowState {
             );
           } else if (type == SuccessRendererType.snackBar) {
             AppDialogs.showSnackBar(
-                context: context, message: message ?? successMessage0 ?? "");
+                bottom: instance.bottom ?? 20.0,
+                context: context,
+                message: message ?? successMessage0 ?? "");
           }
         }
         break;
