@@ -19,7 +19,7 @@ class AppDialogs {
         closeIconColor: Colors.white,
         shape: const StadiumBorder(),
         margin: EdgeInsets.only(
-            bottom: statePosition == StatePosition.up ? 90.h : 10.h,
+            bottom: statePosition == StatePosition.up ? 85.h : 10.h,
             left: 5.w,
             right: 5.w),
         content: Text(message),

@@ -10,9 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc:
-  lottie: ^2.7.0
+
   equatable: ^2.0.5
   flash: ^3.1.0
+  lottie: ^2.7.0
   intl: any
 
 
