@@ -126,6 +126,7 @@ extension FlowStateExtension on FlowState {
     String? emptyMessage,
     String? successActionTitle,
     StatePosition? statePosition,
+        double? bottom,
     bool? isSliver = false,
     bool? withScaffold = false,
     Function? successAction,
