@@ -8,9 +8,9 @@ enum NormalRendererType { content }
 
 enum StatePosition { up, down }
 
-enum LoadingRendererType { popup, content }
+enum LoadingRendererType { popup, content , none}
 
-enum ErrorRendererType { popup, toast, snackBar, content }
+enum ErrorRendererType { popup, toast, snackBar, content,none }
 
 enum EmptyRendererType { content }
 

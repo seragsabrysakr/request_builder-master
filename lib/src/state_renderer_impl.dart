@@ -346,12 +346,13 @@ extension FlowStateExtension on FlowState {
               color: instance.errorColor,
             );
           } else if (type == ErrorRendererType.snackBar) {
-            AppDialogs.showSnackBar(
-                statePosition: statePosition0 ?? StatePosition.down,
-                bottom: bottom0 ?? 20.0,
-                context: context,
-                message: message ?? errorMessage0 ?? "",
-                error: true);
+            showToast(
+              statePosition: statePosition0 ?? StatePosition.down,
+              // bottom: bottom0 ?? 20.0,
+              context: context,
+              message: message ?? errorMessage0 ?? "",
+              isError: true,
+            );
           }
         }
         break;
@@ -391,11 +392,18 @@ extension FlowStateExtension on FlowState {
               color: instance.mainColor,
             );
           } else if (type == SuccessRendererType.snackBar) {
-            AppDialogs.showSnackBar(
-                statePosition: statePosition0 ?? StatePosition.down,
-                bottom: bottom0 ?? 20.0,
-                context: context,
-                message: message ?? successMessage0 ?? "");
+            showToast(
+              statePosition: statePosition0 ?? StatePosition.down,
+              // bottom: bottom0 ?? 20.0,
+              context: context,
+              message: message ?? successMessage0 ?? "",
+              isError: false,
+            );
+            // AppDialogs.showSnackBar(
+            //     statePosition: statePosition0 ?? StatePosition.down,
+            //     bottom: bottom0 ?? 20.0,
+            //     context: context,
+            //     message: message ?? successMessage0 ?? "");
           }
         }
         break;

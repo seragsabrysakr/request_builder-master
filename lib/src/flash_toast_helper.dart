@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:request_builder/request_builder.dart';
@@ -22,10 +23,15 @@ class FToast {
           position: statePosition == StatePosition.up
               ? FlashPosition.top
               : FlashPosition.bottom,
-          dismissDirections: const [FlashDismissDirection.vertical],
+          dismissDirections: const [
+            FlashDismissDirection.startToEnd,
+            FlashDismissDirection.endToStart
+          ],
+          forwardAnimationCurve: Curves.easeInCirc,
           controller: controller,
           child: Padding(
-            padding: EdgeInsets.only(bottom: 6.h),
+            padding: EdgeInsets.only(
+                bottom: statePosition == StatePosition.up ? 80.h : 6.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
@@ -71,14 +77,15 @@ class FToast {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              height: 2.h,
+                              height: 1.h,
                             ),
                             Row(
                               children: [
                                 Text(
                                   title,
                                   style: RequestBuilderInitializer
-                                      .instance.titleTextStyle,
+                                      .instance.titleTextStyle
+                                      ?.copyWith(color: color),
                                 ),
                                 const Spacer(),
                                 InkWell(
@@ -101,15 +108,20 @@ class FToast {
                               color: Colors.grey.shade100,
                               thickness: 1.sp,
                             ),
-                            Text(
-                              message,
-                              style: RequestBuilderInitializer
-                                  .instance.messageTextStyle,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                            SizedBox(
+                              height: 6.h,
+                              width: 90.w,
+                              child: AutoSizeText(
+                                softWrap: true,
+                                message,
+                                style: RequestBuilderInitializer
+                                    .instance.messageTextStyle,
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                             SizedBox(
-                              height: 2.h,
+                              height: 1.h,
                             )
                           ],
                         ),

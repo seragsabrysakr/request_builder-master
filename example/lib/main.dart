@@ -16,26 +16,32 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     RequestBuilderInitializer.init(
       navigatorKey: navigatorKey,
+      statePosition: StatePosition.up,
+      bottom: 5,
       successImage: "assets/json/loading.json",
     );
 
-    return MaterialApp(
-      title: 'Flutter Demo',
-      navigatorKey: navigatorKey,
-      // localizationsDelegates: AppLocalizations.localizationsDelegates,
-      // supportedLocales: AppLocalizations.supportedLocales,
-      locale: const Locale('en'),
-      onGenerateTitle: (context) {
-        RequestBuilderInitializer.initStrings(
-          loadingTitle: "Looading...",
-        );
-        return "";
-      },
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
-        useMaterial3: true,
+    return OverlaySupport.global(
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        navigatorKey: navigatorKey,
+        // localizationsDelegates: AppLocalizations.localizationsDelegates,
+        // supportedLocales: AppLocalizations.supportedLocales,
+        locale: const Locale('en'),
+        onGenerateTitle: (context) {
+          RequestBuilderInitializer.initStrings(
+            // loadingTitle: "Looading...!",
+            // successTitle: "Success!",
+            // errorTitle: "Error!",
+          );
+          return "";
+        },
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+          useMaterial3: true,
+        ),
+        home: const MyHomePage(title: 'Request Builder Demo'),
       ),
-      home: const MyHomePage(title: 'Request Builder Demo'),
     );
   }
 }
@@ -88,6 +94,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                     ElevatedButton(
+                      child: const Text("SnackBar"),
+                      onPressed: () {
+                        ExampleCubit.get(context).emitState(const SuccessState(
+                            type: SuccessRendererType.snackBar,
+                            message: "Success with SnackBar"));
+                      },
+                    ),
+                    ElevatedButton(
                       child: const Text("Content"),
                       onPressed: () {
                         ExampleCubit.get(context)
@@ -118,8 +132,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: const Text("Success toast"),
                       onPressed: () {
                         ExampleCubit.get(context).emitState(const SuccessState(
-                            type: SuccessRendererType.toast,
-                            message: "Success toast"));
+                            type: SuccessRendererType.snackBar,
+                            message: "Success toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toastSuccess toast"));
                       },
                     ),
                     ElevatedButton(
@@ -165,10 +179,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       ExampleCubit.get(context)
                           .emitState(const EmptyState(message: "Error toast"));
                     },
-                    successTitle: "tyy",
-                    successMessage: "hhh",
-                    successActionTitle: "Okey",
-                    // successMessage: "",
                     contentBuilder: (context, cubit) {
                       return const Center(
                         child: Text('Content of request'),

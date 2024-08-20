@@ -29,7 +29,7 @@ class LangAr implements Lang {
   String get retry => "اعد المحاولة";
 
   @override
-  String get success => "تم بنجاح";
+  String get success => "نجاح";
 }
 
 class LangEn implements Lang {
