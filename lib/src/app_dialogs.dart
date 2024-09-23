@@ -7,7 +7,12 @@ import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-showToast( {required BuildContext? context,   required String message,bool isError = false,required StatePosition statePosition,}) async {
+showToast({
+  required BuildContext? context,
+  required String message,
+  bool isError = false,
+  required StatePosition statePosition,
+}) async {
   if (context == null) {
     return;
   }
@@ -15,16 +20,15 @@ showToast( {required BuildContext? context,   required String message,bool isErr
     Text(
       message,
       textAlign: TextAlign.center,
-      style: RequestBuilderInitializer
-          .instance.messageTextStyle,
+      style: RequestBuilderInitializer.instance.messageTextStyle,
     ),
-    duration:  const Duration(milliseconds: 500),
+    duration: const Duration(milliseconds: 1000),
     background: isError ? AppColors.errorColor : AppColors.mainColor,
-    position: statePosition == StatePosition.up ? NotificationPosition.top : NotificationPosition.bottom,
+    position: statePosition == StatePosition.up
+        ? NotificationPosition.top
+        : NotificationPosition.bottom,
   );
 }
-
-
 
 // class AppDialogs {
 //   static showSnackBar({
