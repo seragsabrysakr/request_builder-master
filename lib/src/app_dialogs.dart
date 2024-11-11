@@ -22,7 +22,7 @@ showToast({
       textAlign: TextAlign.center,
       style: RequestBuilderInitializer.instance.messageTextStyle,
     ),
-    duration: const Duration(milliseconds: 1000),
+    duration: const Duration(milliseconds: 3000),
     background: isError ? AppColors.errorColor : AppColors.mainColor,
     position: statePosition == StatePosition.up
         ? NotificationPosition.top
