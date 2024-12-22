@@ -328,11 +328,10 @@ extension FlowStateExtension on FlowState {
               errorTitle: errorTitle0,
               errorImage: errorImage0,
               errorMessage: errorMessage0,
-              successActionTitle:
-                  successActionTitle ?? instance.successActionTitle,
+              successActionTitle: context.lng.retry,
               successAction: successAction ?? instance.successAction,
               state: this,
-              retryActionFunction: () {},
+              retryActionFunction: retry ?? () {},
               maxContentHeight: maxContentHeight,
             );
             // show popup error
@@ -435,8 +434,8 @@ extension FlowStateExtension on FlowState {
           filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
           child: Dialog(
             backgroundColor: Colors.transparent,
-            child: widget,
             elevation: 0,
+            child: widget,
           ),
         ),
       );
